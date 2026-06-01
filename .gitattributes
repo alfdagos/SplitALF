@@ -1,0 +1,10 @@
+# Normalizza i fine riga: nel repository i file di testo usano sempre LF.
+# Evita differenze spurie tra sviluppo su Windows e la CI Linux (GitHub Actions).
+* text=auto eol=lf
+
+# File binari: nessuna conversione.
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff binary
+*.woff2 binary
