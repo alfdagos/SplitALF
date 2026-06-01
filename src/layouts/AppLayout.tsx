@@ -39,7 +39,7 @@ export function AppLayout() {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
               <Wallet className="h-5 w-5" />
             </div>
-            <span className="text-lg font-bold tracking-tight">SplitMate</span>
+            <span className="text-lg font-bold tracking-tight">SplitALF</span>
           </Link>
 
           <DropdownMenu>
@@ -90,7 +90,7 @@ export function AppLayout() {
 
       <footer className="border-t py-6">
         <div className="container text-center text-sm text-muted-foreground">
-          SplitMate · spese condivise per piccoli gruppi
+          SplitALF · spese condivise per piccoli gruppi
         </div>
       </footer>
     </div>

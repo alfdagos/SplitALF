@@ -1,5 +1,5 @@
 -- =============================================================================
--- SplitMate — Migration 0002: Row Level Security
+-- SplitALF — Migration 0002: Row Level Security
 -- =============================================================================
 -- Abilita RLS su tutte le tabelle e definisce le policy. Regola generale:
 -- un utente può vedere/modificare solo i dati dei gruppi di cui è membro.

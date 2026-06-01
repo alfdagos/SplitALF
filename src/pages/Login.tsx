@@ -60,7 +60,7 @@ export default function Login() {
       <CardHeader>
         <CardTitle className="text-2xl">Accedi</CardTitle>
         <CardDescription>
-          Inserisci le tue credenziali per entrare in SplitMate.
+          Inserisci le tue credenziali per entrare in SplitALF.
         </CardDescription>
       </CardHeader>
       <Form {...form}>

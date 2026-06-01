@@ -61,7 +61,7 @@ export function InviteMemberDialog({ groupId }: { groupId: string }) {
         <DialogHeader>
           <DialogTitle>Invita un membro</DialogTitle>
           <DialogDescription>
-            Inserisci l’email di una persona già registrata su SplitMate.
+            Inserisci l’email di una persona già registrata su SplitALF.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>

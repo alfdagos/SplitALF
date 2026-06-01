@@ -1,6 +1,6 @@
 import { Toaster as Sonner, type ToasterProps } from 'sonner';
 
-/** Wrapper del Toaster di sonner con i colori del tema SplitMate. */
+/** Wrapper del Toaster di sonner con i colori del tema SplitALF. */
 const Toaster = (props: ToasterProps) => {
   return (
     <Sonner

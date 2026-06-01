@@ -1,5 +1,5 @@
 -- =============================================================================
--- SplitMate — Migration 0001: schema iniziale
+-- SplitALF — Migration 0001: schema iniziale
 -- =============================================================================
 -- Crea le tabelle applicative, i vincoli, gli indici, il trigger di
 -- creazione automatica del profilo e le funzioni helper SECURITY DEFINER
@@ -177,7 +177,7 @@ $$;
 -- Il client non può interrogare auth.users né i profili altrui: questa RPC
 -- (SECURITY DEFINER) effettua il lookup dell'email e l'inserimento, dopo aver
 -- verificato che il chiamante sia membro del gruppo.
--- L'utente invitato deve essersi già registrato a SplitMate.
+-- L'utente invitato deve essersi già registrato a SplitALF.
 -- =============================================================================
 create or replace function public.add_member_by_email(_group_id uuid, _email text)
 returns public.profiles

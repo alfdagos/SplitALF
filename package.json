@@ -1,9 +1,9 @@
 {
-  "name": "splitmate",
+  "name": "splitalf",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "SplitMate — gestione spese condivise per piccoli gruppi (Splitwise semplificato). Frontend React su GitHub Pages, backend Supabase.",
+  "description": "SplitALF — gestione spese condivise per piccoli gruppi (Splitwise semplificato). Frontend React su GitHub Pages, backend Supabase.",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

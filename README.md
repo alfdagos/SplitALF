@@ -1,4 +1,4 @@
-# 💸 SplitMate
+# 💸 SplitALF
 
 Web app per registrare **spese condivise** tra piccoli gruppi (2-10 persone) e
 calcolare automaticamente **chi deve dare soldi a chi**, con il numero minimo di
@@ -139,7 +139,7 @@ In **Authentication → Providers → Email**:
 In **Authentication → URL Configuration**:
 
 - **Site URL**: l'URL di GitHub Pages
-  (es. `https://tuo-utente.github.io/splitmate/`).
+  (es. `https://tuo-utente.github.io/splitalf/`).
 - **Redirect URLs**: aggiungi sia l'URL di produzione sia
   `http://localhost:5173/` per lo sviluppo locale.
   Il link di recupero password rimanda a `…/#/reset-password`.

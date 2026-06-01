@@ -42,7 +42,7 @@ export default function Register() {
       const { session } = await authService.signUp(values);
       if (session) {
         // Email confirmation disabilitata: l'utente è già loggato.
-        toast.success('Benvenuto in SplitMate!');
+        toast.success('Benvenuto in SplitALF!');
         navigate('/', { replace: true });
       } else {
         // Email confirmation attiva: serve conferma via email.
