@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { UserAvatar } from '@/components/UserAvatar';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { useProfile } from '@/hooks/useProfile';
 import { authService } from '@/services/auth.service';
 import { getErrorMessage } from '@/lib/errors';
@@ -44,7 +45,9 @@ export function AppLayout() {
             </span>
           </Link>
 
-          <DropdownMenu>
+          <div className="flex items-center gap-1">
+            <ThemeToggle />
+            <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
@@ -82,7 +85,8 @@ export function AppLayout() {
                 Esci
               </DropdownMenuItem>
             </DropdownMenuContent>
-          </DropdownMenu>
+            </DropdownMenu>
+          </div>
         </div>
       </header>
 

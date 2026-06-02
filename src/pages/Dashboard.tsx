@@ -168,14 +168,17 @@ export default function Dashboard() {
   return (
     <div className="space-y-8">
       <PageHeader
+        className="animate-rise"
         title="Dashboard"
         description="Una panoramica dei tuoi gruppi e dei tuoi saldi."
         actions={<CreateGroupDialog />}
       />
 
-      <SummaryCards />
+      <div className="animate-rise [animation-delay:90ms]">
+        <SummaryCards />
+      </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="animate-rise grid gap-6 [animation-delay:180ms] lg:grid-cols-2">
         <section className="space-y-4">
           <h2 className="text-lg font-semibold">I tuoi gruppi</h2>
           <GroupsSection />

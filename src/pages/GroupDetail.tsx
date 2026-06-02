@@ -48,7 +48,7 @@ export default function GroupDetail() {
 
   return (
     <div className="space-y-6">
-      <div>
+      <div className="animate-rise">
         <Link
           to="/"
           className="mb-3 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
@@ -72,7 +72,7 @@ export default function GroupDetail() {
         </div>
       </div>
 
-      <Tabs defaultValue="expenses">
+      <Tabs defaultValue="expenses" className="animate-rise [animation-delay:90ms]">
         <TabsList>
           <TabsTrigger value="expenses">Spese</TabsTrigger>
           <TabsTrigger value="summary">Riepilogo</TabsTrigger>

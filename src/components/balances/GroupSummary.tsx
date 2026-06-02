@@ -1,4 +1,10 @@
-import { ArrowRight, CheckCircle2, TrendingDown, TrendingUp } from 'lucide-react';
+import {
+  ArrowRight,
+  CheckCircle2,
+  TrendingDown,
+  TrendingUp,
+  Wallet,
+} from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -35,16 +41,20 @@ export function GroupSummary({ groupId }: { groupId: string }) {
 
   return (
     <div className="space-y-6">
-      <Card>
-        <CardHeader className="pb-2">
-          <CardDescription>Totale spese del gruppo</CardDescription>
-          <CardTitle className="text-3xl tabular-nums">
+      <Card className="bg-ember glow-ember animate-rise overflow-hidden border-0 text-white">
+        <CardContent className="relative p-6">
+          <div className="pointer-events-none absolute -right-10 -top-16 h-44 w-44 rounded-full bg-white/20 blur-3xl" />
+          <p className="relative flex items-center gap-1.5 text-sm font-medium text-white/85">
+            <Wallet className="h-4 w-4" />
+            Totale spese del gruppo
+          </p>
+          <p className="relative mt-1.5 font-display text-4xl font-extrabold tracking-tight tabular-nums">
             {formatCurrency(totalSpent)}
-          </CardTitle>
-        </CardHeader>
+          </p>
+        </CardContent>
       </Card>
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="animate-rise grid gap-4 [animation-delay:90ms] md:grid-cols-2">
         <Card>
           <CardHeader className="pb-3">
             <CardTitle className="flex items-center gap-2 text-base">
@@ -104,7 +114,7 @@ export function GroupSummary({ groupId }: { groupId: string }) {
         </Card>
       </div>
 
-      <Card>
+      <Card className="animate-rise [animation-delay:180ms]">
         <CardHeader>
           <CardTitle className="text-base">Trasferimenti consigliati</CardTitle>
           <CardDescription>

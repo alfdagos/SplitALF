@@ -161,3 +161,28 @@
       0 2px 8px -2px hsl(var(--ember-from) / 0.35);
   }
 }
+
+@layer utilities {
+  /* Ingresso scenografico: salita + dissolvenza, componibile con animation-delay */
+  @keyframes splitalf-rise {
+    from {
+      opacity: 0;
+      transform: translateY(16px) scale(0.99);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .animate-rise {
+    animation: splitalf-rise 0.6s cubic-bezier(0.22, 0.7, 0.2, 1) both;
+  }
+
+  /* Rispetta chi preferisce ridurre le animazioni */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-rise {
+      animation: none;
+    }
+  }
+}
