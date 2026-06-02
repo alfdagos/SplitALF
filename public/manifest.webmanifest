@@ -1,0 +1,28 @@
+{
+  "name": "SplitALF — Spese condivise",
+  "short_name": "SplitALF",
+  "description": "Registra le spese condivise e scopri chi deve dare soldi a chi.",
+  "lang": "it",
+  "dir": "ltr",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fefcfb",
+  "theme_color": "#ec3a1c",
+  "categories": ["finance", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "pwa-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "pwa-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

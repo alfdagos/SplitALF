@@ -254,6 +254,9 @@ profiles ──< group_members >── groups ──< expenses ──< expense_s
   **personalizzata**.
 - **Storico**: tabella con ricerca, ordinamento e filtri per data.
 - **Riepilogo**: totale spese, creditori, debitori e trasferimenti consigliati.
+- **Tema** chiaro/scuro "rosso fuoco" con toggle e persistenza.
+- **PWA**: installabile su mobile/desktop (manifest, icona brace, service worker
+  con strategia network-first e fallback offline).
 
 ---
 
