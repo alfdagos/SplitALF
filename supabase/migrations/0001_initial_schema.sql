@@ -270,3 +270,37 @@ begin
   return _expense_id;
 end;
 $$;
+
+-- =============================================================================
+-- RPC: crea un gruppo e iscrive il creatore come membro, atomicamente.
+-- -----------------------------------------------------------------------------
+-- SECURITY DEFINER: imposta created_by = auth.uid() lato server ed esegue
+-- entrambi gli insert bypassando RLS, evitando il problema "uovo e gallina"
+-- (il creatore non è ancora membro, quindi non vedrebbe la riga appena creata).
+-- =============================================================================
+create or replace function public.create_group(_name text)
+returns public.groups
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  _uid   uuid := auth.uid();
+  _group public.groups;
+begin
+  if _uid is null then
+    raise exception 'Devi essere autenticato per creare un gruppo'
+      using errcode = '42501';
+  end if;
+
+  insert into public.groups (name, created_by)
+  values (trim(_name), _uid)
+  returning * into _group;
+
+  insert into public.group_members (group_id, user_id)
+  values (_group.id, _uid)
+  on conflict (group_id, user_id) do nothing;
+
+  return _group;
+end;
+$$;

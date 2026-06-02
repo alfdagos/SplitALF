@@ -24,7 +24,7 @@ export function useCreateGroup() {
   return useMutation({
     mutationFn: (name: string) => {
       if (!user) throw new Error('Utente non autenticato');
-      return groupsService.createGroup(name, user.id);
+      return groupsService.createGroup(name);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.groups() });

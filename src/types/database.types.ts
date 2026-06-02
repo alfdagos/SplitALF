@@ -130,6 +130,10 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
+      create_group: {
+        Args: { _name: string };
+        Returns: Database['public']['Tables']['groups']['Row'];
+      };
       add_member_by_email: {
         Args: { _group_id: string; _email: string };
         Returns: Database['public']['Tables']['profiles']['Row'];

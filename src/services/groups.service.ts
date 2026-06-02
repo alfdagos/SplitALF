@@ -28,21 +28,17 @@ export const groupsService = {
     return data;
   },
 
-  /** Crea il gruppo e iscrive automaticamente il creatore come membro. */
-  async createGroup(name: string, userId: string): Promise<Group> {
-    const { data: group, error } = await supabase
-      .from('groups')
-      .insert({ name, created_by: userId })
-      .select()
-      .single();
+  /**
+   * Crea il gruppo e iscrive il creatore come membro, in modo atomico.
+   * Usa la RPC SECURITY DEFINER create_group: imposta created_by = auth.uid()
+   * lato server ed evita i problemi di RLS del doppio insert.
+   */
+  async createGroup(name: string): Promise<Group> {
+    const { data, error } = await supabase.rpc('create_group', {
+      _name: name,
+    });
     if (error) throw error;
-
-    const { error: memberError } = await supabase
-      .from('group_members')
-      .insert({ group_id: group.id, user_id: userId });
-    if (memberError) throw memberError;
-
-    return group;
+    return data as Group;
   },
 
   async renameGroup(groupId: string, name: string): Promise<Group> {
