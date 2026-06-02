@@ -10,6 +10,16 @@ export interface SignUpParams {
   password: string;
 }
 
+/**
+ * URL base dell'app (origin + path), SENZA hash. È il bersaglio dei redirect
+ * dei link email: deve essere assoluto e presente nella allow-list di Supabase.
+ * In locale vale http://localhost:5173/, in produzione
+ * https://alfdagos.github.io/SplitALF/ — così funziona in entrambi gli ambienti.
+ */
+function appBaseUrl(): string {
+  return `${window.location.origin}${window.location.pathname}`;
+}
+
 export const authService = {
   async signUp({ name, email, password }: SignUpParams) {
     const { data, error } = await supabase.auth.signUp({
@@ -18,6 +28,8 @@ export const authService = {
       options: {
         // Letto dal trigger handle_new_user per popolare il nome del profilo.
         data: { name },
+        // Dove tornare dopo aver cliccato il link di conferma nell'email.
+        emailRedirectTo: appBaseUrl(),
       },
     });
     if (error) throw error;
@@ -38,11 +50,14 @@ export const authService = {
     if (error) throw error;
   },
 
-  /** Invia l'email di recupero password con redirect alla pagina di reset. */
+  /**
+   * Invia l'email di recupero password. Il redirect punta all'URL base
+   * (senza hash): al ritorno l'evento PASSWORD_RECOVERY instrada l'utente
+   * alla pagina di reset (vedi AuthProvider).
+   */
   async resetPassword(email: string) {
-    const redirectTo = `${window.location.origin}${window.location.pathname}#/reset-password`;
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo,
+      redirectTo: appBaseUrl(),
     });
     if (error) throw error;
   },
