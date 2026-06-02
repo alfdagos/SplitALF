@@ -11,6 +11,16 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: [
+          'Hanken Grotesk',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          'sans-serif',
+        ],
+        display: ['Bricolage Grotesque', 'Hanken Grotesk', 'sans-serif'],
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

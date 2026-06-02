@@ -4,71 +4,82 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --background: 28 44% 99%;
+    --foreground: 20 16% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 20 16% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover-foreground: 20 16% 11%;
 
-    --primary: 142 71% 45%;
+    /* Rosso fuoco */
+    --primary: 8 89% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --secondary: 24 33% 96%;
+    --secondary-foreground: 20 18% 18%;
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted: 24 25% 95%;
+    --muted-foreground: 20 9% 42%;
 
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 20 92% 96%;
+    --accent-foreground: 10 72% 38%;
 
-    --destructive: 0 72% 51%;
+    --destructive: 0 80% 49%;
     --destructive-foreground: 0 0% 100%;
 
-    --success: 142 71% 45%;
+    /* Verde = credito (mantenuto per semantica del saldo) */
+    --success: 150 58% 39%;
     --success-foreground: 0 0% 100%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 142 71% 45%;
+    --border: 24 22% 90%;
+    --input: 24 22% 89%;
+    --ring: 8 89% 50%;
 
-    --radius: 0.65rem;
+    /* Gradiente "brace": rosso -> arancio -> ambra */
+    --ember-from: 0 85% 49%;
+    --ember-via: 14 93% 51%;
+    --ember-to: 34 96% 54%;
+
+    --radius: 0.8rem;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    --background: 20 16% 7%;
+    --foreground: 24 22% 96%;
 
-    --card: 240 10% 5.9%;
-    --card-foreground: 0 0% 98%;
+    --card: 20 15% 10%;
+    --card-foreground: 24 22% 96%;
 
-    --popover: 240 10% 5.9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 20 15% 10%;
+    --popover-foreground: 24 22% 96%;
 
-    --primary: 142 64% 47%;
-    --primary-foreground: 240 10% 3.9%;
+    --primary: 9 91% 56%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 20 11% 16%;
+    --secondary-foreground: 24 22% 96%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 20 11% 16%;
+    --muted-foreground: 24 11% 65%;
 
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 18 40% 18%;
+    --accent-foreground: 28 96% 72%;
 
-    --destructive: 0 62.8% 50%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 74% 52%;
+    --destructive-foreground: 0 0% 100%;
 
-    --success: 142 64% 47%;
-    --success-foreground: 240 10% 3.9%;
+    --success: 150 55% 48%;
+    --success-foreground: 0 0% 100%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 142 64% 47%;
+    --border: 20 11% 18%;
+    --input: 20 11% 20%;
+    --ring: 9 91% 56%;
+
+    --ember-from: 0 84% 55%;
+    --ember-via: 16 93% 56%;
+    --ember-to: 36 97% 58%;
   }
 }
 
@@ -77,10 +88,76 @@
     @apply border-border;
   }
 
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply text-foreground antialiased;
+    font-family:
+      'Hanken Grotesk', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    background-color: hsl(var(--background));
+    /* Atmosfera: bagliore caldo "brace" in alto a destra + accenno in alto a sinistra. */
+    background-image:
+      radial-gradient(
+        900px 520px at 88% -12%,
+        hsl(24 96% 55% / 0.16),
+        transparent 60%
+      ),
+      radial-gradient(
+        720px 460px at -8% -6%,
+        hsl(0 86% 56% / 0.1),
+        transparent 58%
+      );
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     font-feature-settings:
-      'rlig' 1,
+      'ss01' 1,
+      'cv01' 1,
       'calt' 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: 'Bricolage Grotesque', 'Hanken Grotesk', sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* Cifre tabellari per importi allineati */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  /* Gradiente brace come sfondo */
+  .bg-ember {
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--ember-from)),
+      hsl(var(--ember-via)) 48%,
+      hsl(var(--ember-to))
+    );
+  }
+
+  /* Testo con riempimento gradiente brace */
+  .text-ember {
+    background-image: linear-gradient(
+      120deg,
+      hsl(var(--ember-from)),
+      hsl(var(--ember-to))
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Bagliore caldo per elementi in evidenza */
+  .glow-ember {
+    box-shadow:
+      0 10px 30px -10px hsl(var(--ember-via) / 0.55),
+      0 2px 8px -2px hsl(var(--ember-from) / 0.35);
   }
 }

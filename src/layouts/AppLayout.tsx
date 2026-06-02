@@ -32,14 +32,16 @@ export function AppLayout() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-muted/30">
-      <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div className="flex min-h-screen flex-col">
+      <header className="sticky top-0 z-40 border-b border-border/70 bg-background/70 backdrop-blur-xl">
         <div className="container flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+          <Link to="/" className="flex items-center gap-2.5">
+            <div className="bg-ember glow-ember flex h-9 w-9 items-center justify-center rounded-xl text-primary-foreground">
               <Wallet className="h-5 w-5" />
             </div>
-            <span className="text-lg font-bold tracking-tight">SplitALF</span>
+            <span className="font-display text-lg font-bold tracking-tight">
+              Split<span className="text-ember">ALF</span>
+            </span>
           </Link>
 
           <DropdownMenu>

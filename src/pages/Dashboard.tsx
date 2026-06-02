@@ -2,13 +2,11 @@ import { Link } from 'react-router-dom';
 import { ArrowDownLeft, ArrowUpRight, Receipt, Users, Wallet } from 'lucide-react';
 import { PageHeader } from '@/components/PageHeader';
 import { EmptyState } from '@/components/EmptyState';
-import { BalanceAmount } from '@/components/BalanceAmount';
 import { CreateGroupDialog } from '@/components/groups/CreateGroupDialog';
 import { GroupCard } from '@/components/groups/GroupCard';
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -21,60 +19,61 @@ function SummaryCards() {
   const { data: totals, isLoading } = useUserTotals();
 
   if (isLoading || !totals) {
-    return (
-      <div className="grid gap-4 sm:grid-cols-3">
-        {Array.from({ length: 3 }).map((_, i) => (
-          <Skeleton key={i} className="h-28" />
-        ))}
-      </div>
-    );
+    return <Skeleton className="h-44 rounded-xl" />;
   }
 
+  const isZero = Math.abs(totals.net) < 0.01;
+  const positive = totals.net >= 0;
+  const caption = isZero
+    ? 'Sei in pari 🎉'
+    : positive
+      ? 'In totale devi ricevere'
+      : 'In totale devi dare';
+
   return (
-    <div className="grid gap-4 sm:grid-cols-3">
-      <Card>
-        <CardHeader className="pb-2">
-          <CardDescription className="flex items-center gap-1.5">
-            <Wallet className="h-4 w-4" />
-            Saldo totale
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <BalanceAmount net={totals.net} showSign className="text-3xl" />
-          <p className="mt-1 text-xs text-muted-foreground">
-            {totals.net >= 0
-              ? 'In totale devi ricevere'
-              : 'In totale devi dare'}
-          </p>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader className="pb-2">
-          <CardDescription className="flex items-center gap-1.5">
-            <ArrowUpRight className="h-4 w-4 text-success" />
-            Hai pagato
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-3xl font-semibold tabular-nums">
-            {formatCurrency(totals.paid)}
-          </p>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader className="pb-2">
-          <CardDescription className="flex items-center gap-1.5">
-            <ArrowDownLeft className="h-4 w-4 text-destructive" />
-            La tua quota
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-3xl font-semibold tabular-nums">
-            {formatCurrency(totals.owed)}
-          </p>
-        </CardContent>
-      </Card>
-    </div>
+    <Card className="bg-ember glow-ember overflow-hidden border-0 text-white">
+      <CardContent className="relative p-6 sm:p-8">
+        {/* Aloni decorativi caldi */}
+        <div className="pointer-events-none absolute -right-12 -top-20 h-52 w-52 rounded-full bg-white/20 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 right-1/3 h-44 w-44 rounded-full bg-amber-300/30 blur-3xl" />
+
+        <div className="relative flex flex-col gap-6">
+          <div>
+            <p className="flex items-center gap-1.5 text-sm font-medium text-white/85">
+              <Wallet className="h-4 w-4" />
+              Saldo totale
+            </p>
+            <p className="mt-1.5 font-display text-4xl font-extrabold tracking-tight tabular-nums sm:text-5xl">
+              {formatCurrency(totals.net)}
+            </p>
+            <span className="mt-3 inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-sm font-medium backdrop-blur">
+              {caption}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 border-t border-white/25 pt-5">
+            <div>
+              <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-white/75">
+                <ArrowUpRight className="h-3.5 w-3.5" />
+                Hai pagato
+              </p>
+              <p className="mt-1 text-xl font-semibold tabular-nums">
+                {formatCurrency(totals.paid)}
+              </p>
+            </div>
+            <div>
+              <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-white/75">
+                <ArrowDownLeft className="h-3.5 w-3.5" />
+                La tua quota
+              </p>
+              <p className="mt-1 text-xl font-semibold tabular-nums">
+                {formatCurrency(totals.owed)}
+              </p>
+            </div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 
